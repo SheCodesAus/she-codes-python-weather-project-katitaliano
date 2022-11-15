@@ -20,8 +20,6 @@ Returns:
 def convert_date(iso_string):
     date = datetime.fromisoformat(iso_string)
     return date.strftime("%A %d %B %Y")
-print(convert_date("2021-07-02"))
-
 
 """Converts and ISO formatted date into a human readable format.
 
@@ -36,7 +34,7 @@ Returns:
 def convert_f_to_c(temp_in_farenheit):
     temp = (float(temp_in_farenheit) - 32.0) * (5/9)
     return round(temp, 1)
-print(convert_f_to_c(100))
+
 
 """Converts an temperature from farenheit to celcius.
 
@@ -50,47 +48,88 @@ Returns:
 
 
 def calculate_mean(weather_data):
-    """Calculates the mean value from a list of numbers.
+    total = 0
+    count = len(weather_data)
+    for item in range(0, count):
+        total = float(total) + float(weather_data[item])
+    mean = total/count
+    return mean
 
-    Args:
-        weather_data: a list of numbers.
-    Returns:
-        A float representing the mean value.
-    """
-    pass
+"""Calculates the mean value from a list of numbers.
+
+Args:
+    weather_data: a list of numbers.
+Returns:
+    A float representing the mean value.
+"""
+
 
 
 def load_data_from_csv(csv_file):
-    """Reads a csv file and stores the data in a list.
+    with open(csv_file) as csv_file:
+        reader = csv.reader(csv_file)
+        next(reader)
+        list = []
+        for line in reader:
+            if line:
+                sublist = []
+                sublist.append(line[0])
+                sublist.append(int(line[1]))
+                sublist.append(int(line[2]))
+                list.append(sublist)
+        return list
 
-    Args:
-        csv_file: a string representing the file path to a csv file.
-    Returns:
-        A list of lists, where each sublist is a (non-empty) line in the csv file.
-    """
-    pass
+"""Reads a csv file and stores the data in a list.
+
+Args:
+    csv_file: a string representing the file path to a csv file.
+Returns:
+    A list of lists, where each sublist is a (non-empty) line in the csv file.
+"""
+    
 
 
 def find_min(weather_data):
-    """Calculates the minimum value in a list of numbers.
+    if (weather_data):
+        mini = min(weather_data)
+        print(float(mini))
+        minindex = 0
+        for index in range(len(weather_data)):
+            item = weather_data[index]
+            if item == mini:
+                minindex = index
+        return float(mini), minindex
+    return ()
 
-    Args:
-        weather_data: A list of numbers.
-    Returns:
-        The minium value and it's position in the list.
-    """
-    pass
+
+"""Calculates the minimum value in a list of numbers.
+
+Args:
+    weather_data: A list of numbers.
+Returns:
+    The minium value and it's position in the list.
+"""
+
 
 
 def find_max(weather_data):
-    """Calculates the maximum value in a list of numbers.
+    if (weather_data):
+        maxi = max(weather_data)
+        maxindex = 0
+        for index in range(len(weather_data)):
+            item = weather_data[index]
+            if item == maxi:
+                maxindex = index
+        return float(maxi), maxindex
+    return ()
 
-    Args:
-        weather_data: A list of numbers.
-    Returns:
-        The maximum value and it's position in the list.
-    """
-    pass
+"""Calculates the maximum value in a list of numbers.
+
+Args:
+    weather_data: A list of numbers.
+Returns:
+    The maximum value and it's position in the list.
+"""
 
 
 def generate_summary(weather_data):
