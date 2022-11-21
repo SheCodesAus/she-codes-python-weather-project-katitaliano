@@ -32,6 +32,7 @@ Returns:
 def convert_f_to_c(temp_in_farenheit):
     temp = (float(temp_in_farenheit) - 32.0) * (5.0/9.0)
     return round(temp, 1)
+    
 """Converts an temperature from farenheit to celcius.
 
 Args:
@@ -153,7 +154,6 @@ Returns:
 
 def generate_daily_summary(weather_data):
     sum_list =[]
-    # line = 0
     for line in weather_data:
         date = convert_date(line[0])
         min_temp = format_temperature(convert_f_to_c(line[1]))
