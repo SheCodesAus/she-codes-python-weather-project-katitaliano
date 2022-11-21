@@ -152,11 +152,24 @@ Returns:
 """
 
 def generate_daily_summary(weather_data):
-    """Outputs a daily summary for the given weather data.
+    sum_list =[]
+    # line = 0
+    for line in weather_data:
+        date = convert_date(line[0])
+        min_temp = format_temperature(convert_f_to_c(line[1]))
+        max_temp = format_temperature(convert_f_to_c(line[2]))
+        form_sum = (f'''---- {date} ----\n  Minimum Temperature: {min_temp}\n  Maximum Temperature: {max_temp}\n\n''')
+        sum_list.append(form_sum)
+    daily_sum_str = ""
+    for ele in sum_list:
+        daily_sum_str += ele
+    return daily_sum_str      
+        
+"""Outputs a daily summary for the given weather data.
 
-    Args:
-        weather_data: A list of lists, where each sublist represents a day of weather data.
-    Returns:
-        A string containing the summary information.
-    """
-    pass
+Args:
+    weather_data: A list of lists, where each sublist represents a day of weather data.
+Returns:
+    A string containing the summary information.
+"""
+
